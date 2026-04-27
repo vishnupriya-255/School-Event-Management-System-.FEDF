@@ -1,0 +1,93 @@
+<html>
+<head>
+    <style>
+        body { font-family: 'Courier New', Courier, monospace; text-align: center; background: #222; color: white; }
+        .container { margin-top: 100px; padding: 20px; border: 2px solid #444; display: inline-block; border-radius: 10px; }
+        #clock-container { font-size: 3rem; margin: 20px; }
+        span { padding: 5px 10px; border-radius: 5px; transition: background 0.2s; }
+        button { padding: 10px; margin: 10px; cursor: pointer; }
+        #status { color: #aaa; }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Digital Clock</h2>
+
+        <div id="clock-container">
+            <span id="hour">00</span>
+            ": "
+            <span id="min">00</span>
+            ": "
+            <span id="sec">00</span>
+        </div>
+
+        <hr>
+
+        <button onclick="useDOM()">Update with Standard DOM</button>
+        <button onclick="useVDOM()">Update with Virtual DOM</button>
+
+        <p id="status">Click a button to start the clock!</p>
+    </div>
+
+    <script>
+        let vdomState = { h: "00", m: "00", s: "00" };
+
+        function getTime() {
+            const now = new Date();
+            return {
+                h: String(now.getHours()).padStart(2, '0'),
+                m: String(now.getMinutes()).padStart(2, '0'),
+                s: String(now.getSeconds()).padStart(2, '0')
+            };
+        }
+
+        // 1. STANDARD DOM: Rewrite everything every second
+        function useDOM() {
+            document.getElementById("status").innerText = "Mode: Standard DOM (Updating everything...)";
+            
+            setInterval(() => {
+                const time = getTime();
+
+                document.getElementById("hour").innerText = time.h;
+                document.getElementById("min").innerText = time.m;
+                document.getElementById("sec").innerText = time.s;
+
+                document.querySelectorAll('span').forEach(el => {
+                    el.style.backgroundColor = "lightcoral";
+                    setTimeout(() => el.style.backgroundColor = "transparent", 300);
+                });
+            }, 1000);
+        }
+
+        // 2. VIRTUAL DOM: Only update what changed
+        function useVDOM() {
+            document.getElementById("status").innerText = "Mode: Virtual DOM (Only updating seconds!)";
+
+            setInterval(() => {
+                const time = getTime();
+                
+                if (time.h !== vdomState.h) {
+                    updateElement("hour", time.h);
+                }
+                if (time.m !== vdomState.m) {
+                    updateElement("min", time.m);
+                }
+                if (time.s !== vdomState.s) {
+                    updateElement("sec", time.s);
+                }
+
+                vdomState = time;
+            }, 1000);
+        }
+
+        function updateElement(id, value) {
+            const el = document.getElementById(id);
+            el.innerText = value;
+
+            el.style.backgroundColor = "lightgreen";
+            setTimeout(() => el.style.backgroundColor = "transparent", 300);
+        }
+    </script>
+</body>
+</html>
