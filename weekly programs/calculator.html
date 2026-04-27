@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<input id="a" placeholder="First number">
+<input id="b" placeholder="Second number"><br><br>
+
+<button onclick="calc('+')">+</button>
+<button onclick="calc('-')">-</button>
+<button onclick="calc('*')">*</button>
+<button onclick="calc('/')">/</button>
+
+<script>
+function calc(op) {
+    let x = Number(document.getElementById("a").value);
+    let y = Number(document.getElementById("b").value);
+    let result;
+
+    if(op=='+') result = x + y;
+    if(op=='-') result = x - y;
+    if(op=='*') result = x * y;
+    if(op=='/') result = x / y;
+
+    alert(result);
+}
+</script>
+
+</body>
+</html>
