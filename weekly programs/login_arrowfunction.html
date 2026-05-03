@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Login</title>
+</head>
+<body>
+  <h2>Login Form</h2>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button id="loginBtn">Login</button>
+
+  <script>
+    // Arrow function for login
+    const login = () => {
+      let user = document.getElementById("username").value;
+      document.write(`Welcome`);
+    };
+
+    // Attach event
+    document.getElementById("loginBtn").onclick = () => login();
+  </script>
+</body>
+</html>
