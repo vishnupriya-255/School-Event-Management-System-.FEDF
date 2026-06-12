@@ -111,6 +111,3 @@ The About Page provides detailed information about the School Event Management S
 
 ---
 
-## Academic Project
-
-Developed during the academic year 2025–26 as part of curriculum requirements.
