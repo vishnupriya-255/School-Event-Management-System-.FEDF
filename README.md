@@ -93,9 +93,9 @@ The About Page provides detailed information about the School Event Management S
 ### Surabhi Anushka
 
 * Designed the project workflow/flowchart
-*Contributed in designing of student dashboard.
-*contributed in project overall flow.
-*contributed in providing data for abstract.
+* Contributed in designing of student dashboard.
+* contributed in project overall flow.
+* contributed in providing data for abstract.
 ---
 
 
